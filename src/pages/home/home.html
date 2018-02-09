@@ -1,18 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title text-center>Git</ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content class="card-background-page">
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-card primary>
+        <ion-item>
+            <ion-input [(ngModel)]="username" placeholder="Unesite git nalog"></ion-input>
+        </ion-item>
+        <ion-item>
+            <button full ion-button (click)="search(username)">Traži</button>
+        </ion-item>
+    </ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+    <ion-card *ngFor="let git of gits">
+        <img src="{{ git.owner.avatar_url}}">
+        <div class="card-title"><a href="{{ git.html_url }}">{{ git.name }}</a></div>
+        <div class="card-subtitle">{{ git.full_name }}
+            <br>
+            {{ git.created_at | date : "dd.MM.y." }}
+        </div>
+    </ion-card>
+
+
 </ion-content>
